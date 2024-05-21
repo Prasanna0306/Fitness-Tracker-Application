@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,7 +73,7 @@ public class UserController {
         }
 
     }
-
+   @Secured("ROLE_TRAINER")
     @PutMapping("/deleteexercisebyuserid/{uid}/{exeid}")
     public ResponseEntity<String> deleteexercisebyuserid(@PathVariable int uid, @PathVariable int exeid){
         try{
@@ -112,7 +113,7 @@ public class UserController {
         return new ResponseEntity<>(" Meal alredy exits", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
-
+@Secured("ROLE_TRAINER")
 @PostMapping("/insertex/{userId}/{exerciseId}")
 public ResponseEntity<String> exerciseanduser(@PathVariable int userId, @PathVariable int exerciseId) {
 try {

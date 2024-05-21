@@ -60,11 +60,11 @@ public class ExerciseController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletemeals (@PathVariable int id) {
         try{
+            Optional<Exercises> exc = exerciseRepository.findById(id);
+            if(!exc.isPresent()){
+                return new ResponseEntity<>("Exercise not found ",HttpStatus.NOT_FOUND);
+            }
         exerciseService.deleteById(id);
-        Optional<Exercises> exc = exerciseRepository.findById(id);
-        if(!exc.isPresent()){
-            return new ResponseEntity<>("Exercise not found ",HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>("Deleted",HttpStatus.OK);
         }catch(Exception e){
             return new ResponseEntity<>("not deleted",HttpStatus.INTERNAL_SERVER_ERROR);

@@ -126,7 +126,7 @@ public class UserService {
             // If the meal is not already associated, add it
             if (!exerciseExists) {
                 exercises.add(exercise);
-                user.setExercises(exercises);
+                user.setExercises(exercises);   
                 return userRepository.save(user);
             }
         }

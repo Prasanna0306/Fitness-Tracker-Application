@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import java.util.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @NoArgsConstructor
@@ -22,7 +23,8 @@ public class Meal {
     private String description;
     private String quantity;
     private String calories;
-     @JsonBackReference
+    //  @JsonBackReference
+    @JsonIgnore
     //@JsonIgnoreProperties("meals")
     @ManyToMany(mappedBy = "meals")
     private Set<User> users;

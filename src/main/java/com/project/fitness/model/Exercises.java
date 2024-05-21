@@ -2,6 +2,8 @@ package com.project.fitness.model;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,8 +24,9 @@ public class Exercises {
     private String reputations;
     private String sets;
     private String calPerRep;
-    @JsonBackReference
+    @JsonIgnore
     //@JsonIgnoreProperties("exercises")
+    
     @ManyToMany(mappedBy = "exercises")
     private Set<User> users;
 

@@ -1,5 +1,6 @@
 package com.project.fitness.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,14 @@ public class NutritionistService {
             return nutritionistRepo.findById(id);
         }
         
+        public List<Nutritionist> getnutritionists(){
+            return nutritionistRepo.findAll();
+        }
+        
+        public void deletenutritionist(int id){
+            nutritionistRepo.deleteById(id);
+        }
+
+        
+
 }

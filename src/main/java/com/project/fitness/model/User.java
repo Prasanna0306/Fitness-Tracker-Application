@@ -1,4 +1,5 @@
 package com.project.fitness.model;
+
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -36,31 +37,28 @@ public class User implements users {
     private String email;
     private String password;
 
-    @JsonManagedReference
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "user_meal" ,
-                joinColumns = @JoinColumn (name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name ="meal_id") )
+    @JoinTable(name = "user_meal", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "meal_id"))
     private Set<Meal> meals;
 
-    @JsonManagedReference
-    @ManyToMany(cascade =CascadeType.ALL)
-    @JoinTable(name = "user_exercises" ,
-                joinColumns = @JoinColumn(name ="user_id") ,
-                inverseJoinColumns = @JoinColumn(name = "exercise_id")) 
+    // @JsonManagedReference
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_exercises", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "exercise_id"))
     private Set<Exercises> exercises;
-    
+
     // @OneToMany(cascade = CascadeType.ALL,
-    //             fetch = FetchType.LAZY,
-    //             mappedBy = "user" )
+    // fetch = FetchType.LAZY,
+    // mappedBy = "user" )
     // private List<Tracker> taracker;
 
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY ,cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "gym_owner_id")
     private Gymowner gymowner;
 
-    //@JsonBackReference
+    // @JsonBackReference
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Trainer trainer;
@@ -68,6 +66,5 @@ public class User implements users {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Nutritionist nutritionist;
-
 
 }

@@ -2,6 +2,7 @@ package com.project.fitness.model;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -25,7 +26,7 @@ public class Gymowner implements users{
     private String ownerName;
     private String location;
     
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "gymowner" ,cascade = CascadeType.ALL)
     private Set<User> users;
 
