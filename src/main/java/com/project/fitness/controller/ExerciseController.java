@@ -71,7 +71,7 @@ public class ExerciseController {
         }
     }
 
-    @DeleteMapping("/deleteAll")
+    @DeleteMapping("/deleteAll")    
     public ResponseEntity<Void> deleteAllEndUsers() {
        exerciseService.deleteAll();
         return ResponseEntity.noContent().build();
